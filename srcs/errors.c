@@ -1,56 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/02 16:37:39 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:18:40 by tordner          ###   ########.fr       */
+/*   Created: 2025/08/04 18:30:29 by tordner           #+#    #+#             */
+/*   Updated: 2025/08/04 19:19:01 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	free_input(char **map)
+int	is_cubfile(char *str)
 {
 	int	i;
 
-	if (!map)
-		return ;
 	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		map[i] = NULL;
+	while (str[i])
 		i++;
-	}
-	free(map);
-	map = NULL;
+	if (str[i - 1] != 'b' || str[i - 2] != 'u' || str[i - 3] != 'c' \
+		|| str[i - 4] != '.' || !ft_is_alpha(str[i - 5]))
+		return (0);
+	return (1);
 }
 
-void	ft_free_all(t_data *data)
+int	errors(int ac, char **av)
 {
-	free_input(data->input);
-	free(data);
-}
-
-int	ft_exit(t_data *data)
-{
-	ft_free_all(data);
-	exit(1);
-}
-
-int	main(int ac, char **av)
-{
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	init_data(data);
-	if (errors(ac, av))
-		ft_exit(data);
-	if (handle_input(data, av))
-		ft_exit(data);
-	ft_exit(data);
+	if (ac != 2)
+		return (write(1, "Error: invalid number of arguments\n", 36), 1);
+	if (!is_cubfile(av[1]))
+		return (write(1, "Error: file should have .cub extension\n", 40), 1);
 	return (0);
 }
