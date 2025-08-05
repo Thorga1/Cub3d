@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:33:23 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/05 19:13:03 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,19 @@ typedef struct s_config
 	int		ceiling_rgb[3];
 }	t_config;
 
+typedef	struct s_count_elements
+{
+	int	c_no;
+	int	c_so;
+	int	c_ea;
+	int	c_we;
+}	t_c_elem;
 
 typedef struct s_data
 {
 	char		**input;
 	t_config	*conf;
+	t_c_elem	*c_elem;
 }			t_data;
 
 int		errors(int ac, char **av);
@@ -44,6 +52,7 @@ int		ft_is_alpha(char c);
 char	**ft_split(char const *s, char c);
 int		handle_input(t_data *data, char **av);
 int		init_data(t_data *data);
+int		ft_isspace(int c);
 
 int		is_map_line(const char *line);
 int		is_identifier_line(const char *line);

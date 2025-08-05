@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:00:06 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:19:29 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/05 19:06:37 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,9 @@ int	init_data(t_data *data)
 	data->conf->ceiling_rgb[0] = -1;
 	data->conf->ceiling_rgb[1] = -1;
 	data->conf->ceiling_rgb[2] = -1;
+	data->c_elem->c_no = 0;
+	data->c_elem->c_so = 0;
+	data->c_elem->c_ea = 0;
+	data->c_elem->c_we = 0;
 	return (0);
 }

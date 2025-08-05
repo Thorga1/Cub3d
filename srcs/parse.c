@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:32:57 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/05 19:12:15 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,35 @@ int	get_input(t_data *data, char *file)
 
 int	check_identifiers(t_data *data)
 {
+	if (data->c_elem->c_no != 1 || \
+		data->c_elem->c_so != 1 || \
+		data->c_elem->c_ea != 1 || \
+		data->c_elem->c_we != 1)
+		return (1);
+	return (0);
+}
+
+int	parse_identifiers(t_data *data)
+{
 	int	i;
 
 	i = 0;
 	while (!is_map_line(data->input[i]))
 	{
-		
+		if (is_line_empty(data->input[i]))
+		{
+			i++;
+			continue ;
+		}
+		if ()
 	}
+
 }
 
 int	handle_input(t_data *data, char **av)
 {
 	if (get_input(data, av[1]))
 		return (1);
-	if (check_identifiers)
+	if (parse_identifiers)
 	return (0);
 }
