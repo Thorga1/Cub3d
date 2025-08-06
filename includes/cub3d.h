@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/05 19:13:03 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:36:45 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef	struct s_count_elements
 	int	c_so;
 	int	c_ea;
 	int	c_we;
+	int	c_floor;
+	int	c_ceiling;
 }	t_c_elem;
 
 typedef struct s_data

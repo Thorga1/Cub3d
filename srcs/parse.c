@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/05 19:12:15 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:38:12 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,18 @@ int	parse_identifiers(t_data *data)
 			i++;
 			continue ;
 		}
-		if ()
+		if (!is_identifier_line(data->input[i]))
+			return (1);
+		
 	}
-
+	return (0);
 }
 
 int	handle_input(t_data *data, char **av)
 {
 	if (get_input(data, av[1]))
 		return (1);
-	if (parse_identifiers)
+	if (parse_identifiers(data))
+		return (1);
 	return (0);
 }

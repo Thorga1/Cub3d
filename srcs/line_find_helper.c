@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_find_helper.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 21:11:34 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:17:58 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:36:54 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ int	is_identifier_line(const char *line)
 	i = 0;
 	while (line[i] && ft_isspace((unsigned char)line[i]))
 		i++;
-	if ((line[i] == 'N' && (line[i + 1] == 'O' || \
-		line[i + 1] == 'S')) || \
-		(line[i] == 'S' && line[i + 1] == 'O') || \
-		(line[i] == 'W' && line[i + 1] == 'E') || \
-		(line[i] == 'E' && line[i + 1] == 'A') || \
-		line[i] == 'F' || line[i] == 'C')
+	if (line[i] == 'N' && line[i + 1] == 'O' && ft_isspace(line[i + 2]))
+		return (1);
+	if (line[i] == 'S' && line[i + 1] == 'O' && ft_isspace(line[i + 2]))
+		return (1);
+	if (line[i] == 'W' && line[i + 1] == 'E' && ft_isspace(line[i + 2]))
+		return (1);
+	if (line[i] == 'E' && line[i + 1] == 'A' && ft_isspace(line[i + 2]))
+		return (1);
+	if ((line[i] == 'F' || line[i] == 'C') && ft_isspace(line[i + 1]))
 		return (1);
 	return (0);
 }

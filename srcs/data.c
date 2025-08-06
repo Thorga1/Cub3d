@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:00:06 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/05 19:06:37 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/06 16:16:24 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ int	init_data(t_data *data)
 	data->c_elem->c_so = 0;
 	data->c_elem->c_ea = 0;
 	data->c_elem->c_we = 0;
+	data->c_elem->c_we = 0;
+	data->c_elem->c_floor = 0;
+	data->c_elem->c_ceiling = 0;
 	return (0);
 }
