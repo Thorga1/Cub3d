@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:00:06 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/06 16:16:24 by thorgal          ###   ########.fr       */
+/*   Updated: 2025/08/06 20:28:39 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,21 @@
 int	init_data(t_data *data)
 {
 	data->input = NULL;
-	data->conf->we = NULL;
-	data->conf->no = NULL;
-	data->conf->ea = NULL;
-	data->conf->so = NULL;
-	data->conf->floor_rgb[0] = -1;
-	data->conf->floor_rgb[1] = -1;
-	data->conf->floor_rgb[2] = -1;
-	data->conf->ceiling_rgb[0] = -1;
-	data->conf->ceiling_rgb[1] = -1;
-	data->conf->ceiling_rgb[2] = -1;
-	data->c_elem->c_no = 0;
-	data->c_elem->c_so = 0;
-	data->c_elem->c_ea = 0;
-	data->c_elem->c_we = 0;
-	data->c_elem->c_we = 0;
-	data->c_elem->c_floor = 0;
-	data->c_elem->c_ceiling = 0;
+	data->conf.we = NULL;
+	data->conf.no = NULL;
+	data->conf.ea = NULL;
+	data->conf.so = NULL;
+	data->conf.floor_rgb[0] = -1;
+	data->conf.floor_rgb[1] = -1;
+	data->conf.floor_rgb[2] = -1;
+	data->conf.ceiling_rgb[0] = -1;
+	data->conf.ceiling_rgb[1] = -1;
+	data->conf.ceiling_rgb[2] = -1;
+	data->c_elem.c_no = 0;
+	data->c_elem.c_so = 0;
+	data->c_elem.c_ea = 0;
+	data->c_elem.c_we = 0;
+	data->c_elem.c_floor = 0;
+	data->c_elem.c_ceiling = 0;
 	return (0);
 }

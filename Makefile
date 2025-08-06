@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+         #
+#    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/06 16:46:37 by thorgal          ###   ########.fr        #
+#    Updated: 2025/08/06 19:20:30 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS =  $(SRC_DIR)/main.c       \
         $(SRC_DIR)/identifiers.c    \
         $(SRC_DIR)/get_textures.c    \
         $(SRC_DIR)/line_find_helper.c    \
+        $(SRC_DIR)/handle_textures.c    \
         $(SRC_DIR)/errors.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:37:39 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/04 21:18:40 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/06 20:59:27 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ void	free_input(char **map)
 
 void	ft_free_all(t_data *data)
 {
+	if (data->conf.no)
+		free(data->conf.no);
+	if (data->conf.so)
+		free(data->conf.so);
+	if (data->conf.ea)
+		free(data->conf.ea);
+	if (data->conf.we)
+		free(data->conf.we);
 	free_input(data->input);
 	free(data);
 }
@@ -38,7 +46,7 @@ void	ft_free_all(t_data *data)
 int	ft_exit(t_data *data)
 {
 	ft_free_all(data);
-	exit(1);
+	exit(0);
 }
 
 int	main(int ac, char **av)
@@ -46,6 +54,8 @@ int	main(int ac, char **av)
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
+	if (!data)
+		return (1);
 	init_data(data);
 	if (errors(ac, av))
 		ft_exit(data);
