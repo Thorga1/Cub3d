@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+         #
+#    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/08 16:47:31 by thorgal          ###   ########.fr        #
+#    Updated: 2025/08/08 19:47:54 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =  $(SRC_DIR)/main.c				\
 		$(SRC_DIR)/data.c				\
 		$(SRC_DIR)/identifiers.c		\
 		$(SRC_DIR)/get_textures.c		\
+		$(SRC_DIR)/handle_map.c			\
 		$(SRC_DIR)/line_find_helper.c	\
 		$(SRC_DIR)/handle_textures.c	\
 		$(SRC_DIR)/get_background.c		\

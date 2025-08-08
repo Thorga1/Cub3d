@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/08 16:58:51 by thorgal          ###   ########.fr       */
+/*   Updated: 2025/08/08 19:51:51 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	parse_identifiers(t_data *data)
 	int	i;
 
 	i = 0;
+	if (!is_there_map(data->input))
+		return (1);
 	while (!is_map_line(data->input[i]))
 	{
 		if (is_line_empty(data->input[i]))
@@ -85,22 +87,17 @@ void	print_strs(char **arr)
 	}
 }
 
-// void print_config(const t_config *config)
-// {
-//     if (!config)
-//         return;
-
-//     printf("NO texture path: %s\n", config->no ? config->no : "(null)");
-//     printf("SO texture path: %s\n", config->so ? config->so : "(null)");
-//     printf("WE texture path: %s\n", config->we ? config->we : "(null)");
-//     printf("EA texture path: %s\n", config->ea ? config->ea : "(null)");
-
-//     printf("Floor RGB: %d, %d, %d\n",
-//            config->floor_rgb[0], config->floor_rgb[1], config->floor_rgb[2]);
-
-//     printf("Ceiling RGB: %d, %d, %d\n",
-//            config->ceiling_rgb[0], config->ceiling_rgb[1], config->ceiling_rgb[2]);
-// }
+void print_config(t_config *conf)
+{
+    printf("NO: %s\n", conf->no ? conf->no : "(null)");
+    printf("SO: %s\n", conf->so ? conf->so : "(null)");
+    printf("WE: %s\n", conf->we ? conf->we : "(null)");
+    printf("EA: %s\n", conf->ea ? conf->ea : "(null)");
+    printf("Floor RGB: %d, %d, %d\n",
+        conf->floor_rgb[0], conf->floor_rgb[1], conf->floor_rgb[2]);
+    printf("Ceiling RGB: %d, %d, %d\n",
+        conf->ceiling_rgb[0], conf->ceiling_rgb[1], conf->ceiling_rgb[2]);
+}
 
 int	handle_input(t_data *data, char **av)
 {
@@ -108,6 +105,6 @@ int	handle_input(t_data *data, char **av)
 		return (1);
 	if (parse_identifiers(data))
 		return (1);
-	// print_config(&data->conf);
+	print_config(&data->conf);
 	return (0);
 }

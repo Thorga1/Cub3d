@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/08 16:38:06 by thorgal          ###   ########.fr       */
+/*   Updated: 2025/08/08 19:50:18 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		handle_input(t_data *data, char **av);
 int		is_map_line(const char *line);
 int		is_identifier_line(const char *line);
 int		is_line_empty(const char *line);
+int		is_there_map(char **input);
 
 void	trim_trailing_spaces(char *str);
 void	get_no(t_data *data, const char *line);

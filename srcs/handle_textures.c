@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 19:17:23 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/08 15:56:23 by thorgal          ###   ########.fr       */
+/*   Updated: 2025/08/08 19:35:41 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	validate_texture(t_data *data, char *path, const char *label)
 {
 	char	*trimmed;
 
-	printf("path == %s\n", path);
 	if (!path || path[0] == '\0')
 		return (printf("Error: %s path is empty\n", label), 0);
 	trimmed = trim_after_xpm(path);
