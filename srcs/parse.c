@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/06 21:45:49 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:58:51 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,20 @@ int	check_identifiers(t_data *data)
 	if (data->c_elem.c_no != 1 || \
 		data->c_elem.c_so != 1 || \
 		data->c_elem.c_ea != 1 || \
-		data->c_elem.c_we != 1)
+		data->c_elem.c_ea != 1 || \
+		data->c_elem.c_ceiling != 1 || \
+		data->c_elem.c_floor != 1)
+	{
+		printf("Duplicate identifiers detected.\n");
 		return (0);
-	if (!validate_texture(data->conf.no, "NO") || \
-		!validate_texture(data->conf.so, "SO") || \
-		!validate_texture(data->conf.ea, "EA") || \
-		!validate_texture(data->conf.we, "WE"))
+	}
+	if (!validate_texture(data, data->conf.no, "NO") || \
+		!validate_texture(data, data->conf.so, "SO") || \
+		!validate_texture(data, data->conf.ea, "EA") || \
+		!validate_texture(data, data->conf.we, "WE"))
 		return (0);
 	return (1);
 }
-///////////////////STOP3 ICI
-
-//rajouter identifiers floor/ceiling apres
 
 int	parse_identifiers(t_data *data)
 {
@@ -83,14 +85,29 @@ void	print_strs(char **arr)
 	}
 }
 
+// void print_config(const t_config *config)
+// {
+//     if (!config)
+//         return;
+
+//     printf("NO texture path: %s\n", config->no ? config->no : "(null)");
+//     printf("SO texture path: %s\n", config->so ? config->so : "(null)");
+//     printf("WE texture path: %s\n", config->we ? config->we : "(null)");
+//     printf("EA texture path: %s\n", config->ea ? config->ea : "(null)");
+
+//     printf("Floor RGB: %d, %d, %d\n",
+//            config->floor_rgb[0], config->floor_rgb[1], config->floor_rgb[2]);
+
+//     printf("Ceiling RGB: %d, %d, %d\n",
+//            config->ceiling_rgb[0], config->ceiling_rgb[1], config->ceiling_rgb[2]);
+// }
+
 int	handle_input(t_data *data, char **av)
 {
 	if (get_input(data, av[1]))
 		return (1);
 	if (parse_identifiers(data))
 		return (1);
-	
-	printf("%s\n%s\n%s\n%s\n", data->conf.no, data->conf.so, data->conf.ea, data->conf.we);
-	print_strs(data->input);
+	// print_config(&data->conf);
 	return (0);
 }

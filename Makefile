@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
+#    By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/06 19:20:30 by tordner          ###   ########.fr        #
+#    Updated: 2025/08/08 16:47:31 by thorgal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,17 @@ OS = $(shell uname)
 SRC_DIR = srcs
 OBJ_DIR = objs
 
-SRCS =  $(SRC_DIR)/main.c       \
-        $(SRC_DIR)/parse.c    \
-        $(SRC_DIR)/utils.c    \
-        $(SRC_DIR)/ft_split.c    \
-        $(SRC_DIR)/data.c    \
-        $(SRC_DIR)/identifiers.c    \
-        $(SRC_DIR)/get_textures.c    \
-        $(SRC_DIR)/line_find_helper.c    \
-        $(SRC_DIR)/handle_textures.c    \
-        $(SRC_DIR)/errors.c
+SRCS =  $(SRC_DIR)/main.c				\
+		$(SRC_DIR)/parse.c				\
+		$(SRC_DIR)/utils.c				\
+		$(SRC_DIR)/ft_split.c			\
+		$(SRC_DIR)/data.c				\
+		$(SRC_DIR)/identifiers.c		\
+		$(SRC_DIR)/get_textures.c		\
+		$(SRC_DIR)/line_find_helper.c	\
+		$(SRC_DIR)/handle_textures.c	\
+		$(SRC_DIR)/get_background.c		\
+		$(SRC_DIR)/errors.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

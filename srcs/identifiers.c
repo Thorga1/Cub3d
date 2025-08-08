@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifiers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thorgal <thorgal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:31:45 by thorgal           #+#    #+#             */
-/*   Updated: 2025/08/06 21:16:41 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/08 16:43:53 by thorgal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ int	check_east_west(t_data *data, const char *line)
 	return (0);
 }
 
+int	check_background(t_data *data, const char *line)
+{
+	if (line[0] == 'F' && ft_isspace(line[1]))
+	{
+		data->c_elem.c_floor++;
+		if (get_floor(data, line + 2))
+			return (1);
+		else
+			return (0);
+	}
+	if (line[0] == 'C' && ft_isspace(line[1]))
+	{
+		data->c_elem.c_ceiling++;
+		if (get_ceiling(data, line + 2))
+			return (1);
+		else
+			return (0);
+		return (1);
+	}
+	return (0);
+}
+
 int	get_identifiers(t_data *data, const char *line)
 {
 	int	i;
@@ -54,7 +76,8 @@ int	get_identifiers(t_data *data, const char *line)
 	while (line[i] && ft_isspace((unsigned char)line[i]))
 		i++;
 	if (!check_north_south(data, line + i) && \
-	(!check_east_west(data, line + i)))
+	(!check_east_west(data, line + i)) && \
+	(!check_background(data, line + i)))
 		return (0);
 	return (1);
 }
