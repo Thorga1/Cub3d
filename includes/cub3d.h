@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/08 19:50:18 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/11 21:51:13 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef	struct s_count_elements
 
 typedef struct s_data
 {
+	int			flood_error;
 	char		**input;
+	char		**map;
 	t_config	conf;
 	t_c_elem	c_elem;
 }			t_data;
@@ -59,6 +61,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strlen(const char *str);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+void	pad_map_with_walls(char **map);
 
 int		init_data(t_data *data);
 
@@ -67,7 +70,8 @@ int		handle_input(t_data *data, char **av);
 int		is_map_line(const char *line);
 int		is_identifier_line(const char *line);
 int		is_line_empty(const char *line);
-int		is_there_map(char **input);
+int		handle_map(t_data *data);
+
 
 void	trim_trailing_spaces(char *str);
 void	get_no(t_data *data, const char *line);
@@ -77,9 +81,10 @@ void	get_we(t_data *data, const char *line);
 int		get_floor(t_data *data, const char *str);
 int		get_ceiling(t_data *data, const char *str);
 
-
 int		get_identifiers(t_data *data, const char *line);
 
 int		validate_texture(t_data *data, char *path, const char *label);
+
+int		init_flood_fill(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/08 19:47:54 by tordner          ###   ########.fr        #
+#    Updated: 2025/08/11 21:50:55 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRCS =  $(SRC_DIR)/main.c				\
 		$(SRC_DIR)/line_find_helper.c	\
 		$(SRC_DIR)/handle_textures.c	\
 		$(SRC_DIR)/get_background.c		\
+		$(SRC_DIR)/flood_fill.c			\
+		$(SRC_DIR)/utils2.c			\
 		$(SRC_DIR)/errors.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

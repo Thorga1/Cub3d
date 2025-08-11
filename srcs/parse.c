@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/08 19:51:51 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/11 21:51:27 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	check_identifiers(t_data *data)
 	if (data->c_elem.c_no != 1 || \
 		data->c_elem.c_so != 1 || \
 		data->c_elem.c_ea != 1 || \
-		data->c_elem.c_ea != 1 || \
+		data->c_elem.c_we != 1 || \
 		data->c_elem.c_ceiling != 1 || \
 		data->c_elem.c_floor != 1)
 	{
-		printf("Duplicate identifiers detected.\n");
+		printf("Error: Duplicate or missing identifier detected.\n");
 		return (0);
 	}
 	if (!validate_texture(data, data->conf.no, "NO") || \
@@ -55,7 +55,7 @@ int	parse_identifiers(t_data *data)
 	int	i;
 
 	i = 0;
-	if (!is_there_map(data->input))
+	if (!handle_map(data))
 		return (1);
 	while (!is_map_line(data->input[i]))
 	{
@@ -65,7 +65,10 @@ int	parse_identifiers(t_data *data)
 			continue ;
 		}
 		if (!is_identifier_line(data->input[i]))
+		{
+			printf("Error: invalid line found in input.\n");
 			return (1);
+		}
 		if (!get_identifiers(data, data->input[i]))
 			return (1);
 		i++;
@@ -75,28 +78,28 @@ int	parse_identifiers(t_data *data)
 	return (0);
 }
 
-void	print_strs(char **arr)
+int	check_rectangular_map(t_data *data)
 {
 	int	i;
+	int	first_row_length;
+	int	current_row_length;
 
-	i = 0;
-	while (arr && arr[i])
+	first_row_length = 0;
+	while (data->map[0][first_row_length] != '\n'
+		&& data->map[0][first_row_length] != '\0')
+		first_row_length++;
+	i = 1;
+	while (data->map[i])
 	{
-		printf("[%d] %s\n", i, arr[i]);
+		current_row_length = 0;
+		while (data->map[i][current_row_length] != '\n'
+			&& data->map[i][current_row_length] != '\0')
+			current_row_length++;
+		if (current_row_length != first_row_length)
+			return (write(1, "Error: Map is not rectangular\n", 30), 1);
 		i++;
 	}
-}
-
-void print_config(t_config *conf)
-{
-    printf("NO: %s\n", conf->no ? conf->no : "(null)");
-    printf("SO: %s\n", conf->so ? conf->so : "(null)");
-    printf("WE: %s\n", conf->we ? conf->we : "(null)");
-    printf("EA: %s\n", conf->ea ? conf->ea : "(null)");
-    printf("Floor RGB: %d, %d, %d\n",
-        conf->floor_rgb[0], conf->floor_rgb[1], conf->floor_rgb[2]);
-    printf("Ceiling RGB: %d, %d, %d\n",
-        conf->ceiling_rgb[0], conf->ceiling_rgb[1], conf->ceiling_rgb[2]);
+	return (0);
 }
 
 int	handle_input(t_data *data, char **av)
@@ -105,6 +108,10 @@ int	handle_input(t_data *data, char **av)
 		return (1);
 	if (parse_identifiers(data))
 		return (1);
-	print_config(&data->conf);
+	if (init_flood_fill(data))
+		return (1);
+	pad_map_with_walls(data->map);
+	if (check_rectangular_map(data))
+		return (1);
 	return (0);
 }
