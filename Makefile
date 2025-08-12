@@ -6,7 +6,7 @@
 #    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/12 21:01:28 by tordner          ###   ########.fr        #
+#    Updated: 2025/08/12 21:20:28 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ OBJ_DIR := objs
 
 SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
 OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-DEPS := $(OBJS:.o=.d)
 
 CC := cc
 CFLAGS := -Wall -Wextra -Werror -Iincludes -g -MMD -MP
@@ -41,7 +40,6 @@ all: $(NAME)
 $(NAME): $(OBJS) $(MLX)
 	$(CC) $(OBJS) $(LIBS) -o $@
 
-# Compile .c -> .o into objs/, creating subdirs as needed
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -57,7 +55,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
--include $(DEPS)
 
 .PHONY: all clean fclean re

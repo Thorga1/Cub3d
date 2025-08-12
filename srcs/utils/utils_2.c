@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:58:33 by yurwang           #+#    #+#             */
-/*   Updated: 2025/08/12 20:16:31 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:07:51 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	choose_nearest_hit_dist(t_data *data)
 void	texture_hit_x(t_data *data)
 {
 	if (!data->ray.wallhit_side)
-		data->ray.texture_x = (int)data->ray.wallhit.x % TILE_SIZE;
+		data->ray.texture_x = (int)data->ray.wallhit_x % TILE_SIZE;
 	else
-		data->ray.texture_x = (int)data->ray.wallhit.y % TILE_SIZE;
+		data->ray.texture_x = (int)data->ray.wallhit_y % TILE_SIZE;
 	if (!data->ray.wallhit_side && !data->ray.is_facing_down)
 		data->ray.texture_x = TILE_SIZE - data->ray.texture_x - 1;
 	if (data->ray.wallhit_side && !data->ray.is_facing_right)

@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/06 16:46:06 by thorgal           #+#    #+#             */
-/*   Updated: 2025/08/12 19:30:37 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:19:45 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_no(t_data *data, const char *line)
 		i++;
 	path = ft_strdup(line + i);
 	if (!path)
-		ft_exit(data);
+		ft_exit(data, 1);
 	trim_trailing_spaces(path);
 	if (data->conf.no)
 		free(data->conf.no);
@@ -50,7 +50,7 @@ void	get_so(t_data *data, const char *line)
 		i++;
 	path = ft_strdup(line + i);
 	if (!path)
-		ft_exit(data);
+		ft_exit(data, 1);
 	trim_trailing_spaces(path);
 	if (data->conf.so)
 		free(data->conf.so);
@@ -67,7 +67,7 @@ void	get_ea(t_data *data, const char *line)
 		i++;
 	path = ft_strdup(line + i);
 	if (!path)
-		ft_exit(data);
+		ft_exit(data, 1);
 	trim_trailing_spaces(path);
 	if (data->conf.ea)
 		free(data->conf.ea);
@@ -84,7 +84,7 @@ void	get_we(t_data *data, const char *line)
 		i++;
 	path = ft_strdup(line + i);
 	if (!path)
-		ft_exit(data);
+		ft_exit(data, 1);
 	trim_trailing_spaces(path);
 	if (data->conf.we)
 		free(data->conf.we);

@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 20:47:36 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:35:33 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <X11/keysym.h>
 
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
-# define TEXTURE_SIZE 64
+# define TEXTURE_SIZE 300
 # define TILE_SIZE 64
 # define FOV_ANGLE 60
 # define PI 3.1415926535
@@ -33,6 +34,10 @@
 # define EPS 0.0001
 # define TAN_EPS 1e-6
 # define INF_DIST 1e9
+# define EXIT_SUCCESS 0
+# define EXIT_FAIL 1
+# define SPEED 0.5
+# define TURN_ANGLE 32
 
 typedef struct s_player
 {
@@ -106,24 +111,30 @@ typedef struct s_map
 	int		max_height;
 }	t_map;
 
+typedef struct s_mlx
+{
+	void	*ptr;
+	void	*win_ptr;
+}	t_mlx;
+
+
 typedef struct s_data
 {
 	int			flood_error;
 	char		**input;
 	t_config	conf;
 	t_c_elem	c_elem;
-	void		*mlx;
-	void		*win;
+	t_mlx		mlx;
 	t_img		img;
 	t_player	player;
 	t_ray		ray;
 	t_wall		wall;
 	t_map		map;
-	t_img		textures[3];
+	t_img		textures[4];
 }			t_data;
 
 int		errors(int ac, char **av);
-int		ft_exit(t_data *data);
+int		ft_exit(t_data *data, int end);
 
 char	**ft_split(char const *s, char c);
 int		ft_is_alpha(char c);
@@ -161,6 +172,17 @@ int		init_flood_fill(t_data *data);
 int		is_spawn(char c);
 void	get_player(t_data *data);
 void	get_map_infos(t_data *data);	
+int		ft_key(int key, t_data *data);
+
+//mlx
+void	init_mlx(t_data *data);
+void    move_front(t_data *data);
+void    move_back(t_data *data);
+void    move_left(t_data *data);
+void    move_right(t_data *data);
+void    rotate_right(t_data *data);
+void    rotate_left(t_data *data);
+
 
 
 //init_game

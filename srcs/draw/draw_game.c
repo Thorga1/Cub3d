@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/10 20:12:35 by yurwang           #+#    #+#             */
-/*   Updated: 2025/08/12 21:03:16 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:06:52 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,5 @@ int	draw_game(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx.ptr, \
 		data->mlx.win_ptr, data->img.ptr, 0, 0);
+	return (0);
 }

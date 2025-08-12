@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:00:06 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 20:14:05 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:58:10 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	init_data(t_data *data)
 {
+	data->player.pos_x = 0.0;
+	data->player.pos_y = 0.0;
 	data->input = NULL;
 	data->map.map = NULL;
 	data->map.max_height = 0;

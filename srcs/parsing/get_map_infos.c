@@ -6,11 +6,11 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 20:24:22 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 20:43:51 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 21:57:00 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "cub3d.h"
 
 void	get_player_dir(char c, t_data *data)
 {
@@ -46,12 +46,13 @@ void	get_player(t_data *data)
 	j = 0;
 	while (data->map.map[i])
 	{
+		j = 0;
 		while (data->map.map[i][j])
 		{
 			if (is_spawn(data->map.map[i][j]))
 			{
-				data->player.pos_x = j;
-				data->player.pos_y = i;
+				data->player.pos_x = (double)j + 0.5;
+				data->player.pos_y = (double)i + 0.5;
 				get_player_dir(data->map.map[i][j], data);
 			}
 			j++;
