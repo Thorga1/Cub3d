@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/11 21:51:27 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 20:44:19 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ int	check_rectangular_map(t_data *data)
 	int	current_row_length;
 
 	first_row_length = 0;
-	while (data->map[0][first_row_length] != '\n'
-		&& data->map[0][first_row_length] != '\0')
+	while (data->map.map[0][first_row_length] != '\n'
+		&& data->map.map[0][first_row_length] != '\0')
 		first_row_length++;
 	i = 1;
-	while (data->map[i])
+	while (data->map.map[i])
 	{
 		current_row_length = 0;
-		while (data->map[i][current_row_length] != '\n'
-			&& data->map[i][current_row_length] != '\0')
+		while (data->map.map[i][current_row_length] != '\n'
+			&& data->map.map[i][current_row_length] != '\0')
 			current_row_length++;
 		if (current_row_length != first_row_length)
 			return (write(1, "Error: Map is not rectangular\n", 30), 1);
@@ -110,8 +110,10 @@ int	handle_input(t_data *data, char **av)
 		return (1);
 	if (init_flood_fill(data))
 		return (1);
-	pad_map_with_walls(data->map);
+	pad_map_with_walls(data->map.map);
 	if (check_rectangular_map(data))
 		return (1);
+	get_player(data);
+	get_map_infos(data);
 	return (0);
 }

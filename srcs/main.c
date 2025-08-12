@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:37:39 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/11 21:54:19 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 20:14:19 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_free_all(t_data *data)
 	if (data->conf.we)
 		free(data->conf.we);
 	free_input(data->input);
-	free_input(data->map);
+	free_input(data->map.map);
 	free(data);
 }
 

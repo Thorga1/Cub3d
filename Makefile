@@ -6,57 +6,44 @@
 #    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/11 21:50:55 by tordner          ###   ########.fr        #
+#    Updated: 2025/08/12 21:01:28 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cub3d
+NAME := cub3d
 
-OS = $(shell uname)
+OS := $(shell uname)
 
-SRC_DIR = srcs
-OBJ_DIR = objs
+SRC_DIR := srcs
+OBJ_DIR := objs
 
-SRCS =  $(SRC_DIR)/main.c				\
-		$(SRC_DIR)/parse.c				\
-		$(SRC_DIR)/utils.c				\
-		$(SRC_DIR)/ft_split.c			\
-		$(SRC_DIR)/data.c				\
-		$(SRC_DIR)/identifiers.c		\
-		$(SRC_DIR)/get_textures.c		\
-		$(SRC_DIR)/handle_map.c			\
-		$(SRC_DIR)/line_find_helper.c	\
-		$(SRC_DIR)/handle_textures.c	\
-		$(SRC_DIR)/get_background.c		\
-		$(SRC_DIR)/flood_fill.c			\
-		$(SRC_DIR)/utils2.c			\
-		$(SRC_DIR)/errors.c
+SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
+OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+DEPS := $(OBJS:.o=.d)
 
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-
-CC = cc -Wall -Wextra -Werror -Iincludes
+CC := cc
+CFLAGS := -Wall -Wextra -Werror -Iincludes -g -MMD -MP
 
 ifeq ($(OS), Linux)
-    MLX_PATH = ./mlx_linux
-    MLX = $(MLX_PATH)/libmlx.a
-    LIBS = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-    CFLAGS = -g -Imlx_linux
+	MLX_PATH := ./mlx_linux
+	MLX := $(MLX_PATH)/libmlx.a
+	CFLAGS += -Imlx_linux
+	LIBS := -Lmlx_linux -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 else
-    MLX_PATH = ./mlx
-    MLX = $(MLX_PATH)/libmlx.a
-    LIBS = -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
-    CFLAGS = -g -Imlx
+	MLX_PATH := ./mlx
+	MLX := $(MLX_PATH)/libmlx.a
+	CFLAGS += -Imlx
+	LIBS := -L$(MLX_PATH) -lmlx -framework OpenGL -framework AppKit
 endif
 
 all: $(NAME)
 
-$(NAME): $(OBJ_DIR) $(OBJS) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
+$(NAME): $(OBJS) $(MLX)
+	$(CC) $(OBJS) $(LIBS) -o $@
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
+# Compile .c -> .o into objs/, creating subdirs as needed
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(MLX):
@@ -64,11 +51,13 @@ $(MLX):
 
 clean:
 	rm -rf $(OBJ_DIR)
+	$(MAKE) -C $(MLX_PATH) clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(MLX_PATH) clean
 
 re: fclean all
+
+-include $(DEPS)
 
 .PHONY: all clean fclean re

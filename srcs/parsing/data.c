@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 20:00:06 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/11 21:17:08 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 20:14:05 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int	init_data(t_data *data)
 {
 	data->input = NULL;
-	data->map = NULL;
+	data->map.map = NULL;
+	data->map.max_height = 0;
+	data->map.max_width = 0;
 	data->flood_error = 0;
 	data->conf.we = NULL;
 	data->conf.no = NULL;

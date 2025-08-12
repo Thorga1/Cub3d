@@ -6,13 +6,13 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 20:15:16 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/11 21:54:09 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/12 20:31:15 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	is_spawn(char c)
+int	is_spawn(char c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
@@ -56,15 +56,15 @@ int	init_flood_fill(t_data *data)
 	data->flood_error = 0;
 	spawn_count = 0;
 	i = 0;
-	while (data->map[i])
+	while (data->map.map[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->map.map[i][j])
 		{
-			if (is_spawn(data->map[i][j]))
+			if (is_spawn(data->map.map[i][j]))
 			{
 				spawn_count++;
-				flood_fill(&data->flood_error, data->map, j, i);
+				flood_fill(&data->flood_error, data->map.map, j, i);
 			}
 			j++;
 		}
