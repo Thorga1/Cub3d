@@ -6,43 +6,11 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:37:39 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 21:17:51 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/13 21:31:51 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	free_input(char **map)
-{
-	int	i;
-
-	if (!map)
-		return ;
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		map[i] = NULL;
-		i++;
-	}
-	free(map);
-	map = NULL;
-}
-
-void	ft_free_all(t_data *data)
-{
-	if (data->conf.no)
-		free(data->conf.no);
-	if (data->conf.so)
-		free(data->conf.so);
-	if (data->conf.ea)
-		free(data->conf.ea);
-	if (data->conf.we)
-		free(data->conf.we);
-	free_input(data->input);
-	free_input(data->map.map);
-	free(data);
-}
 
 int	ft_exit(t_data *data, int end)
 {

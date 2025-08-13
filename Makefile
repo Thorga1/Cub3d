@@ -6,7 +6,7 @@
 #    By: tordner <tordner@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/14 15:28:00 by tordner           #+#    #+#              #
-#    Updated: 2025/08/12 21:20:28 by tordner          ###   ########.fr        #
+#    Updated: 2025/08/13 19:58:51 by tordner          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
 OBJS := $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 CC := cc
-CFLAGS := -Wall -Wextra -Werror -Iincludes -g -MMD -MP
+CFLAGS := -Wall -Wextra -Werror -Iincludes -g3 -MMD -MP
 
 ifeq ($(OS), Linux)
 	MLX_PATH := ./mlx_linux

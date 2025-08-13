@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/02 16:38:17 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 21:35:33 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/13 21:35:02 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
-# define TEXTURE_SIZE 300
+# define TEXTURE_SIZE 64
 # define TILE_SIZE 64
 # define FOV_ANGLE 60
 # define PI 3.1415926535
@@ -107,6 +107,7 @@ typedef struct s_img
 typedef struct s_map
 {
 	char	**map;
+	char	**dup_map;
 	int		max_width;
 	int		max_height;
 }	t_map;
@@ -145,6 +146,7 @@ int		ft_strlen(const char *str);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 void	pad_map_with_walls(char **map);
+void	ft_free_all(t_data *data);
 
 int		init_data(t_data *data);
 
@@ -154,7 +156,6 @@ int		is_map_line(const char *line);
 int		is_identifier_line(const char *line);
 int		is_line_empty(const char *line);
 int		handle_map(t_data *data);
-
 
 void	trim_trailing_spaces(char *str);
 void	get_no(t_data *data, const char *line);

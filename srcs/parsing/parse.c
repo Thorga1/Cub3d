@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 19:07:33 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 21:57:14 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/13 21:19:44 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,11 @@ int	handle_input(t_data *data, char **av)
 		return (1);
 	if (init_flood_fill(data))
 		return (1);
+	pad_map_with_walls(data->map.dup_map);
 	pad_map_with_walls(data->map.map);
 	if (check_rectangular_map(data))
 		return (1);
 	get_player(data);
 	get_map_infos(data);
-	printf("TESTESTESTEST\n");
-	printf("POSX = %f\n", data->player.pos_x);
-	printf("POSY = %f\n", data->player.pos_y);
-	printf("DIRX = %f\n", data->player.dir_x);
-	printf("DIRY = %f\n", data->player.dir_y);
 	return (0);
 }

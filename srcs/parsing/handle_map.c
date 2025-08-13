@@ -6,7 +6,7 @@
 /*   By: tordner <tordner@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 19:43:22 by tordner           #+#    #+#             */
-/*   Updated: 2025/08/12 20:15:58 by tordner          ###   ########.fr       */
+/*   Updated: 2025/08/13 19:34:42 by tordner          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ int	handle_map(t_data *data)
 	}
 	data->map.map = extract_map(data->input, map_start);
 	if (!data->map.map)
+		return (0);
+	data->map.dup_map = extract_map(data->input, map_start);
+	if (!data->map.dup_map)
 		return (0);
 	return (1);
 }
